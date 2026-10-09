@@ -1,0 +1,14 @@
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY api/node/package*.json ./
+RUN npm ci --omit=dev
+COPY core/typescript ./core/typescript
+COPY api/node ./api/node
+RUN npx tsc -p api/node
+
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=build /app/api/node/dist ./dist
+COPY --from=build /app/node_modules ./node_modules
+EXPOSE 8080
+CMD ["node", "dist/server.js"]
