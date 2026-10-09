@@ -35,19 +35,6 @@ The encoder maintains a dictionary initialized with all single-byte symbols (0-2
 
 The decoder reconstructs the dictionary on-the-fly, mirroring the encoder's dictionary construction. It handles the special case where a code refers to an entry not yet in the dictionary (the "KwKwK" scenario) by using the previous entry's first character to complete the new entry .
 
-## Product Structure
-
-```
-lzw-suite/
-├── index.html              # Complete single-page application
-├── README.md               # This documentation
-└── assets/
-    ├── css/
-    │   └── styles.css      # (Inlined in index.html for deployment)
-    ├── js/
-    │   └── lzw-core.js     # (Inlined in index.html for deployment)
-    └── samples/
-        └── test-data.json  # Test cases from specification
 ```
 
 ### Deployment Configuration
